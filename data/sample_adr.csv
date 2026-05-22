@@ -1,0 +1,201 @@
+drug_name,reaction,date,age,sex,country,outcome
+Omeprazole,Agranulocytosis,2021-10-23,64,F,BE,fatal
+Atorvastatin,Stevens-Johnson,2021-09-25,68,M,DZ,ongoing
+Amiodarone,Anaphylaxis,2021-08-05,75,M,BE,ongoing
+Lisinopril,Renal Failure,2024-01-10,60,M,DE,fatal
+Lisinopril,Hyponatremia,2024-08-10,49,F,CH,hospitalized
+Atorvastatin,Thrombocytopenia,2021-10-14,44,F,DE,ongoing
+Amiodarone,QT Prolongation,2024-08-26,24,M,TN,unknown
+Warfarin,Rhabdomyolysis,2022-03-24,34,F,DZ,fatal
+Ibuprofen,Stevens-Johnson,2022-11-27,31,F,ES,fatal
+Amiodarone,GI Bleeding,2022-12-11,49,F,DE,hospitalized
+Metformin,Agranulocytosis,2021-08-07,35,M,MA,fatal
+Metoprolol,Hyponatremia,2022-03-05,62,M,ES,recovered
+Ibuprofen,Anaphylaxis,2021-01-07,75,F,US,unknown
+Amiodarone,Rhabdomyolysis,2022-07-04,51,M,FR,unknown
+Metformin,Renal Failure,2023-09-02,82,F,MA,unknown
+Warfarin,Renal Failure,2023-01-02,70,F,DZ,fatal
+Metformin,Anaphylaxis,2022-01-24,34,F,TN,hospitalized
+Amiodarone,Hepatotoxicity,2022-05-24,71,M,ES,ongoing
+Lisinopril,Agranulocytosis,2023-11-12,59,F,ES,ongoing
+Clopidogrel,Hepatotoxicity,2021-03-12,76,F,CH,fatal
+Amiodarone,Anaphylaxis,2021-09-24,37,M,CH,ongoing
+Clopidogrel,Hepatotoxicity,2022-02-06,30,M,DZ,hospitalized
+Warfarin,GI Bleeding,2023-06-21,23,F,FR,recovered
+Amlodipine,Thrombocytopenia,2023-06-04,18,M,FR,ongoing
+Omeprazole,Agranulocytosis,2023-08-20,47,F,US,ongoing
+Amiodarone,Rhabdomyolysis,2021-12-07,61,F,CA,ongoing
+Lisinopril,Thrombocytopenia,2023-07-18,76,M,DZ,hospitalized
+Atorvastatin,Agranulocytosis,2024-12-26,41,F,CA,hospitalized
+Clopidogrel,GI Bleeding,2023-08-03,40,F,DZ,ongoing
+Amiodarone,GI Bleeding,2022-06-23,64,F,CA,ongoing
+Amlodipine,Renal Failure,2024-10-17,67,F,FR,unknown
+Clopidogrel,Rhabdomyolysis,2024-10-28,56,F,ES,hospitalized
+Metformin,Hepatotoxicity,2021-07-19,77,M,MA,ongoing
+Lisinopril,Anaphylaxis,2024-12-19,65,M,DZ,fatal
+Clopidogrel,Hepatotoxicity,2023-04-02,44,M,US,hospitalized
+Atorvastatin,QT Prolongation,2023-10-17,21,M,DZ,hospitalized
+Atorvastatin,Hepatotoxicity,2022-08-05,56,F,CA,fatal
+Clopidogrel,Rhabdomyolysis,2021-10-23,66,F,CA,recovered
+Metformin,GI Bleeding,2023-03-10,47,M,MA,recovered
+Clopidogrel,Rhabdomyolysis,2024-10-19,68,F,US,fatal
+Ibuprofen,Renal Failure,2024-10-26,84,M,CA,unknown
+Lisinopril,Hyponatremia,2022-08-26,55,F,DE,fatal
+Atorvastatin,GI Bleeding,2024-05-10,82,F,BE,recovered
+Omeprazole,Hyponatremia,2023-06-03,36,F,DZ,fatal
+Warfarin,QT Prolongation,2024-12-16,35,F,DE,recovered
+Lisinopril,Stevens-Johnson,2024-10-06,26,M,CA,hospitalized
+Amlodipine,Stevens-Johnson,2024-03-26,48,F,US,ongoing
+Amiodarone,GI Bleeding,2023-07-23,72,M,US,ongoing
+Ibuprofen,Thrombocytopenia,2024-09-06,43,F,ES,unknown
+Atorvastatin,Hyponatremia,2021-08-19,78,M,DZ,ongoing
+Metformin,Stevens-Johnson,2021-01-14,49,M,DE,hospitalized
+Ibuprofen,Anaphylaxis,2023-03-15,31,M,DZ,unknown
+Amlodipine,GI Bleeding,2023-08-03,28,M,MA,ongoing
+Amiodarone,QT Prolongation,2021-09-19,73,F,FR,unknown
+Metoprolol,Rhabdomyolysis,2021-02-15,44,F,DZ,fatal
+Atorvastatin,Anaphylaxis,2021-03-11,19,F,CH,ongoing
+Clopidogrel,Anaphylaxis,2021-04-25,48,F,US,ongoing
+Metformin,Hyponatremia,2022-09-04,67,M,CA,hospitalized
+Amiodarone,Hepatotoxicity,2023-09-18,64,M,DE,ongoing
+Metformin,QT Prolongation,2023-12-02,55,M,TN,recovered
+Clopidogrel,Anaphylaxis,2022-08-19,45,F,ES,fatal
+Ibuprofen,Hyponatremia,2021-12-01,18,F,CH,fatal
+Metformin,QT Prolongation,2021-04-22,85,F,CH,unknown
+Metformin,Anaphylaxis,2024-08-03,67,M,TN,ongoing
+Warfarin,QT Prolongation,2021-08-09,83,M,TN,hospitalized
+Omeprazole,QT Prolongation,2024-01-06,26,F,DZ,recovered
+Metformin,Stevens-Johnson,2023-08-03,77,M,FR,unknown
+Metoprolol,Thrombocytopenia,2023-10-24,77,F,MA,ongoing
+Metoprolol,Anaphylaxis,2021-11-13,85,F,CH,hospitalized
+Amiodarone,Agranulocytosis,2024-06-03,33,F,CA,unknown
+Amiodarone,Thrombocytopenia,2023-01-08,80,F,MA,fatal
+Lisinopril,Rhabdomyolysis,2023-07-16,52,M,TN,unknown
+Amlodipine,Anaphylaxis,2023-11-05,85,F,ES,unknown
+Warfarin,Hepatotoxicity,2023-02-11,34,F,CA,unknown
+Warfarin,Anaphylaxis,2021-02-23,86,M,BE,hospitalized
+Omeprazole,GI Bleeding,2021-09-06,77,M,TN,fatal
+Lisinopril,Thrombocytopenia,2023-12-27,50,F,BE,unknown
+Lisinopril,Anaphylaxis,2023-01-21,62,F,DZ,unknown
+Lisinopril,Hyponatremia,2022-01-23,62,M,TN,hospitalized
+Atorvastatin,Hepatotoxicity,2024-05-16,25,M,DE,recovered
+Ibuprofen,QT Prolongation,2023-01-15,85,M,FR,unknown
+Lisinopril,Anaphylaxis,2021-08-08,70,M,ES,unknown
+Lisinopril,Rhabdomyolysis,2022-09-13,59,F,CA,hospitalized
+Lisinopril,QT Prolongation,2024-09-28,76,M,ES,hospitalized
+Amiodarone,Hyponatremia,2021-09-12,59,M,MA,fatal
+Amiodarone,QT Prolongation,2021-02-13,69,F,DZ,hospitalized
+Warfarin,Thrombocytopenia,2023-06-27,38,F,ES,fatal
+Clopidogrel,Agranulocytosis,2023-01-19,38,M,DZ,unknown
+Lisinopril,Renal Failure,2023-12-23,53,F,ES,recovered
+Omeprazole,GI Bleeding,2021-02-11,69,M,CA,recovered
+Ibuprofen,Hepatotoxicity,2023-07-22,39,F,BE,hospitalized
+Atorvastatin,Hepatotoxicity,2022-03-05,67,M,US,ongoing
+Atorvastatin,Agranulocytosis,2023-10-16,59,F,CH,unknown
+Omeprazole,Agranulocytosis,2021-11-22,66,F,DE,unknown
+Amlodipine,Thrombocytopenia,2024-02-14,44,M,CA,recovered
+Amiodarone,Thrombocytopenia,2022-01-07,57,M,MA,fatal
+Warfarin,Renal Failure,2024-08-25,55,M,CA,fatal
+Metformin,QT Prolongation,2022-04-27,85,F,CH,ongoing
+Atorvastatin,Hepatotoxicity,2024-05-01,76,M,US,recovered
+Clopidogrel,Renal Failure,2023-03-06,59,F,ES,hospitalized
+Lisinopril,Hepatotoxicity,2021-11-02,82,M,DE,ongoing
+Warfarin,Rhabdomyolysis,2022-09-09,83,M,CH,recovered
+Metformin,GI Bleeding,2022-05-19,54,M,CA,hospitalized
+Amiodarone,Stevens-Johnson,2021-05-15,82,M,CA,fatal
+Ibuprofen,Stevens-Johnson,2022-07-16,41,F,CH,recovered
+Lisinopril,Hyponatremia,2024-08-24,37,F,DE,unknown
+Clopidogrel,Anaphylaxis,2023-03-10,20,M,FR,fatal
+Lisinopril,QT Prolongation,2021-08-16,79,F,FR,ongoing
+Atorvastatin,Thrombocytopenia,2023-03-18,27,F,FR,unknown
+Metformin,Rhabdomyolysis,2022-08-24,87,M,ES,hospitalized
+Amiodarone,Stevens-Johnson,2022-06-10,62,F,MA,unknown
+Metformin,Hepatotoxicity,2024-04-07,34,F,CA,unknown
+Ibuprofen,Thrombocytopenia,2024-07-25,27,M,DE,unknown
+Amiodarone,QT Prolongation,2021-12-13,79,M,DZ,fatal
+Lisinopril,Anaphylaxis,2021-06-23,27,F,FR,hospitalized
+Clopidogrel,Hepatotoxicity,2021-11-20,76,F,ES,hospitalized
+Warfarin,Stevens-Johnson,2022-10-27,52,M,TN,fatal
+Clopidogrel,Rhabdomyolysis,2023-11-11,55,M,DE,recovered
+Ibuprofen,QT Prolongation,2024-01-07,31,F,ES,fatal
+Amlodipine,QT Prolongation,2023-07-18,18,M,MA,hospitalized
+Amiodarone,QT Prolongation,2021-06-15,35,M,US,fatal
+Amlodipine,Hyponatremia,2024-05-04,37,F,TN,fatal
+Metformin,Anaphylaxis,2021-08-26,31,M,DE,fatal
+Ibuprofen,Anaphylaxis,2024-05-09,58,F,TN,unknown
+Amiodarone,Hepatotoxicity,2023-09-28,85,M,DZ,ongoing
+Atorvastatin,Renal Failure,2024-12-01,82,M,BE,recovered
+Omeprazole,Anaphylaxis,2024-04-28,28,F,DE,fatal
+Omeprazole,Hepatotoxicity,2022-03-14,26,M,DZ,recovered
+Clopidogrel,Rhabdomyolysis,2024-08-25,64,M,ES,hospitalized
+Metoprolol,Agranulocytosis,2021-06-26,87,F,DE,fatal
+Lisinopril,GI Bleeding,2024-05-16,38,M,FR,hospitalized
+Clopidogrel,Thrombocytopenia,2021-04-04,39,M,US,unknown
+Ibuprofen,Anaphylaxis,2023-01-10,58,M,BE,fatal
+Amiodarone,Renal Failure,2023-09-14,52,F,CH,hospitalized
+Lisinopril,Anaphylaxis,2022-02-06,87,M,FR,fatal
+Ibuprofen,Hepatotoxicity,2021-12-06,29,F,CA,recovered
+Clopidogrel,Thrombocytopenia,2023-02-09,75,F,MA,recovered
+Atorvastatin,Agranulocytosis,2024-06-02,87,F,TN,recovered
+Amiodarone,Thrombocytopenia,2023-11-05,85,F,US,fatal
+Ibuprofen,Thrombocytopenia,2022-01-24,69,F,DZ,ongoing
+Warfarin,Agranulocytosis,2022-05-08,78,F,ES,ongoing
+Warfarin,Renal Failure,2024-12-09,19,M,FR,unknown
+Atorvastatin,Agranulocytosis,2021-11-25,47,M,TN,fatal
+Metoprolol,Agranulocytosis,2021-12-27,62,F,TN,hospitalized
+Lisinopril,Stevens-Johnson,2021-05-04,62,F,CA,unknown
+Omeprazole,Rhabdomyolysis,2023-02-16,70,F,CA,unknown
+Metformin,Hyponatremia,2022-11-12,61,M,MA,hospitalized
+Amlodipine,QT Prolongation,2021-08-16,37,F,DE,recovered
+Metoprolol,Hepatotoxicity,2021-08-11,80,F,US,hospitalized
+Clopidogrel,Hyponatremia,2021-10-08,42,M,BE,hospitalized
+Clopidogrel,QT Prolongation,2021-11-20,40,M,DE,hospitalized
+Ibuprofen,Renal Failure,2023-11-11,36,F,DZ,fatal
+Lisinopril,Agranulocytosis,2021-07-04,62,M,ES,unknown
+Metoprolol,Hyponatremia,2022-06-28,45,M,US,hospitalized
+Lisinopril,Rhabdomyolysis,2023-01-17,82,F,CA,ongoing
+Metformin,GI Bleeding,2022-11-16,72,F,TN,hospitalized
+Lisinopril,Renal Failure,2022-09-02,56,F,CA,ongoing
+Atorvastatin,Hepatotoxicity,2023-12-24,29,F,MA,fatal
+Atorvastatin,GI Bleeding,2022-04-22,55,M,TN,hospitalized
+Metformin,Hepatotoxicity,2021-03-24,62,F,BE,recovered
+Amiodarone,Renal Failure,2021-04-07,27,M,MA,recovered
+Lisinopril,Renal Failure,2021-12-15,44,F,US,unknown
+Amlodipine,Hepatotoxicity,2023-05-17,29,F,MA,hospitalized
+Amlodipine,Renal Failure,2024-04-01,83,M,DZ,unknown
+Clopidogrel,Rhabdomyolysis,2024-06-25,76,M,ES,unknown
+Metoprolol,QT Prolongation,2024-06-27,76,F,FR,recovered
+Amiodarone,Agranulocytosis,2024-03-27,65,F,ES,fatal
+Lisinopril,Thrombocytopenia,2021-11-02,43,M,TN,fatal
+Metoprolol,Thrombocytopenia,2022-08-27,20,M,CH,unknown
+Amiodarone,GI Bleeding,2021-04-09,21,M,CA,hospitalized
+Amiodarone,QT Prolongation,2023-02-04,82,M,BE,fatal
+Lisinopril,Rhabdomyolysis,2022-09-07,82,F,US,unknown
+Lisinopril,Thrombocytopenia,2021-05-25,56,F,DZ,recovered
+Ibuprofen,Agranulocytosis,2024-11-28,56,M,FR,unknown
+Amiodarone,Hyponatremia,2024-01-06,62,F,ES,unknown
+Lisinopril,Renal Failure,2021-02-08,38,M,ES,ongoing
+Lisinopril,GI Bleeding,2021-12-28,77,F,TN,hospitalized
+Warfarin,Agranulocytosis,2023-07-26,64,M,FR,recovered
+Lisinopril,Anaphylaxis,2021-10-19,42,F,ES,recovered
+Lisinopril,Rhabdomyolysis,2022-12-24,69,F,ES,unknown
+Lisinopril,Agranulocytosis,2021-12-17,42,F,DE,recovered
+Clopidogrel,Renal Failure,2021-10-03,33,F,CA,recovered
+Clopidogrel,Stevens-Johnson,2022-07-12,27,F,FR,fatal
+Clopidogrel,GI Bleeding,2021-05-13,79,M,TN,fatal
+Metoprolol,QT Prolongation,2021-02-08,79,F,DZ,fatal
+Amiodarone,Thrombocytopenia,2021-02-15,42,F,BE,hospitalized
+Amiodarone,Hepatotoxicity,2024-03-06,54,F,ES,fatal
+Metoprolol,Agranulocytosis,2022-06-19,63,M,CH,ongoing
+Lisinopril,GI Bleeding,2022-10-25,67,M,CA,recovered
+Metoprolol,Rhabdomyolysis,2022-01-27,20,F,DE,unknown
+Omeprazole,Thrombocytopenia,2024-03-13,73,F,CH,unknown
+Metoprolol,Agranulocytosis,2021-09-25,28,M,CA,recovered
+Warfarin,QT Prolongation,2022-11-18,57,M,ES,unknown
+Lisinopril,Thrombocytopenia,2023-10-10,80,M,FR,fatal
+Clopidogrel,Rhabdomyolysis,2022-05-11,38,F,MA,hospitalized
+Clopidogrel,QT Prolongation,2024-04-28,75,M,DE,hospitalized
+Ibuprofen,Hepatotoxicity,2021-10-16,21,F,DE,ongoing
+Ibuprofen,Thrombocytopenia,2021-05-24,48,M,CH,ongoing
+Amiodarone,Agranulocytosis,2022-06-27,23,M,CH,hospitalized
+Lisinopril,Hyponatremia,2022-06-24,20,M,FR,hospitalized
