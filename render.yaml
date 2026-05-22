@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: medai-api
+    runtime: node
+    rootDir: .
+    buildCommand: npm install -g pnpm && pnpm install --frozen-lockfile && pnpm --filter @workspace/api-server run build
+    startCommand: node artifacts/api-server/dist/index.mjs
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+    plan: free
+
+  - type: web
+    name: medai-dashboard
+    runtime: static
+    rootDir: .
+    buildCommand: npm install -g pnpm && pnpm install --frozen-lockfile && pnpm --filter @workspace/medai-dashboard run build
+    staticPublishPath: artifacts/medai-dashboard/dist/public
+    envVars:
+      - key: PORT
+        value: 10001
+      - key: BASE_PATH
+        value: /
+    plan: free
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
