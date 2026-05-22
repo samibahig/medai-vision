@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "buildCommand": "npm install -g pnpm && pnpm install --no-frozen-lockfile && BASE_PATH=/ PORT=3000 pnpm --filter @workspace/medai-dashboard run build",
+  "outputDirectory": "artifacts/medai-dashboard/dist/public",
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
+}
