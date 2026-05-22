@@ -1,0 +1,426 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: MedAI Vision — Pharmacovigilance & Clinical AI Dashboard API
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: pharmacovigilance
+    description: Pharmacovigilance signal detection
+  - name: ml
+    description: Machine learning explainability
+  - name: temporal
+    description: Temporal trend analysis
+  - name: summary
+    description: Dashboard summary KPIs
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  /summary/kpis:
+    get:
+      operationId: getSummaryKpis
+      tags: [summary]
+      summary: Get dashboard summary KPIs
+      responses:
+        "200":
+          description: KPI summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SummaryKpis"
+
+  /signals:
+    get:
+      operationId: getSignals
+      tags: [pharmacovigilance]
+      summary: Get all pharmacovigilance signals (PRR, ROR, IC, EBGM)
+      parameters:
+        - name: drug
+          in: query
+          schema:
+            type: string
+        - name: minPrr
+          in: query
+          schema:
+            type: number
+      responses:
+        "200":
+          description: List of signals
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Signal"
+
+  /signals/volcano:
+    get:
+      operationId: getVolcanoData
+      tags: [pharmacovigilance]
+      summary: Get volcano plot data (ROR vs -log10 p-value)
+      responses:
+        "200":
+          description: Volcano plot data points
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/VolcanoPoint"
+
+  /signals/heatmap:
+    get:
+      operationId: getHeatmapData
+      tags: [pharmacovigilance]
+      summary: Get drug-ADR heatmap matrix
+      responses:
+        "200":
+          description: Heatmap matrix data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HeatmapData"
+
+  /temporal/trends:
+    get:
+      operationId: getTemporalTrends
+      tags: [temporal]
+      summary: Get temporal signal trends over time
+      parameters:
+        - name: drug
+          in: query
+          schema:
+            type: string
+        - name: metric
+          in: query
+          schema:
+            type: string
+            enum: [prr, ror, ic, ebgm]
+      responses:
+        "200":
+          description: Temporal trend data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TemporalTrendPoint"
+
+  /ml/feature-importance:
+    get:
+      operationId: getFeatureImportance
+      tags: [ml]
+      summary: Get ML feature importance scores
+      responses:
+        "200":
+          description: Feature importance data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FeatureImportance"
+
+  /ml/roc:
+    get:
+      operationId: getRocCurve
+      tags: [ml]
+      summary: Get ROC curve data
+      responses:
+        "200":
+          description: ROC curve data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RocData"
+
+  /ml/confusion-matrix:
+    get:
+      operationId: getConfusionMatrix
+      tags: [ml]
+      summary: Get confusion matrix
+      responses:
+        "200":
+          description: Confusion matrix
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConfusionMatrix"
+
+  /ml/model-metrics:
+    get:
+      operationId: getModelMetrics
+      tags: [ml]
+      summary: Get ML model performance metrics
+      responses:
+        "200":
+          description: Model metrics
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ModelMetrics"
+
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required: [status]
+
+    SummaryKpis:
+      type: object
+      properties:
+        totalSignals:
+          type: integer
+        highPrioritySignals:
+          type: integer
+        drugsMonitored:
+          type: integer
+        adverseEventsTracked:
+          type: integer
+        modelAuc:
+          type: number
+        reportsAnalyzed:
+          type: integer
+        newSignalsThisMonth:
+          type: integer
+        signalDetectionRate:
+          type: number
+      required:
+        - totalSignals
+        - highPrioritySignals
+        - drugsMonitored
+        - adverseEventsTracked
+        - modelAuc
+        - reportsAnalyzed
+        - newSignalsThisMonth
+        - signalDetectionRate
+
+    Signal:
+      type: object
+      properties:
+        id:
+          type: string
+        drug:
+          type: string
+        adr:
+          type: string
+        prr:
+          type: number
+        prrLower:
+          type: number
+        prrUpper:
+          type: number
+        ror:
+          type: number
+        rorLower:
+          type: number
+        rorUpper:
+          type: number
+        ic:
+          type: number
+        ic025:
+          type: number
+        ebgm:
+          type: number
+        eb05:
+          type: number
+        nCases:
+          type: integer
+        pValue:
+          type: number
+        priority:
+          type: string
+          enum: [high, medium, low]
+        status:
+          type: string
+          enum: [confirmed, potential, under_review, closed]
+      required:
+        - id
+        - drug
+        - adr
+        - prr
+        - prrLower
+        - prrUpper
+        - ror
+        - rorLower
+        - rorUpper
+        - ic
+        - ic025
+        - ebgm
+        - eb05
+        - nCases
+        - pValue
+        - priority
+        - status
+
+    VolcanoPoint:
+      type: object
+      properties:
+        drug:
+          type: string
+        adr:
+          type: string
+        logRor:
+          type: number
+        negLogP:
+          type: number
+        ror:
+          type: number
+        pValue:
+          type: number
+        nCases:
+          type: integer
+        significant:
+          type: boolean
+        priority:
+          type: string
+      required:
+        - drug
+        - adr
+        - logRor
+        - negLogP
+        - ror
+        - pValue
+        - nCases
+        - significant
+        - priority
+
+    HeatmapData:
+      type: object
+      properties:
+        drugs:
+          type: array
+          items:
+            type: string
+        adrs:
+          type: array
+          items:
+            type: string
+        matrix:
+          type: array
+          items:
+            type: array
+            items:
+              type: number
+      required: [drugs, adrs, matrix]
+
+    TemporalTrendPoint:
+      type: object
+      properties:
+        quarter:
+          type: string
+        drug:
+          type: string
+        prr:
+          type: number
+        ror:
+          type: number
+        ic:
+          type: number
+        ebgm:
+          type: number
+        nCases:
+          type: integer
+      required: [quarter, drug, prr, ror, ic, ebgm, nCases]
+
+    FeatureImportance:
+      type: object
+      properties:
+        feature:
+          type: string
+        featureFr:
+          type: string
+        featureAr:
+          type: string
+        importance:
+          type: number
+        category:
+          type: string
+      required: [feature, featureFr, featureAr, importance, category]
+
+    RocData:
+      type: object
+      properties:
+        fpr:
+          type: array
+          items:
+            type: number
+        tpr:
+          type: array
+          items:
+            type: number
+        thresholds:
+          type: array
+          items:
+            type: number
+        auc:
+          type: number
+      required: [fpr, tpr, thresholds, auc]
+
+    ConfusionMatrix:
+      type: object
+      properties:
+        tn:
+          type: integer
+        fp:
+          type: integer
+        fn:
+          type: integer
+        tp:
+          type: integer
+        labels:
+          type: array
+          items:
+            type: string
+      required: [tn, fp, fn, tp, labels]
+
+    ModelMetrics:
+      type: object
+      properties:
+        accuracy:
+          type: number
+        precision:
+          type: number
+        recall:
+          type: number
+        f1:
+          type: number
+        auc:
+          type: number
+        specificity:
+          type: number
+        npv:
+          type: number
+        modelName:
+          type: string
+        trainedOn:
+          type: string
+      required:
+        - accuracy
+        - precision
+        - recall
+        - f1
+        - auc
+        - specificity
+        - npv
+        - modelName
+        - trainedOn
