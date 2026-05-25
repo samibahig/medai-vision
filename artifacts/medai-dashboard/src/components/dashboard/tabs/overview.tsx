@@ -52,14 +52,15 @@ export function OverviewTab() {
 
   const topDrugsData = useMemo(() => {
     if (!signals) return [];
-    const counts: Record<string, number> = {};
+    const byDrug: Record<string, { drug: string; high: number; medium: number; low: number; total: number }> = {};
     signals.forEach((s: any) => {
-      counts[s.drug] = (counts[s.drug] || 0) + 1;
+      if (!byDrug[s.drug]) byDrug[s.drug] = { drug: s.drug, high: 0, medium: 0, low: 0, total: 0 };
+      byDrug[s.drug][s.priority as "high" | "medium" | "low"] += s.nCases;
+      byDrug[s.drug].total += s.nCases;
     });
-    return Object.entries(counts)
-      .sort(([, a], [, b]) => b - a)
-      .slice(0, 10)
-      .map(([drug, count]) => ({ drug, count }));
+    return Object.values(byDrug)
+      .sort((a, b) => b.total - a.total)
+      .slice(0, 10);
   }, [signals]);
 
   const priorityColors: Record<string, string> = {
@@ -136,7 +137,9 @@ export function OverviewTab() {
         <Card>
           <CardHeader>
             <CardTitle className="text-base">
-              {language === "ar" ? "أعلى 10 أدوية بالإشارات" : "Top 10 Médicaments par Signaux"}
+              {language === "ar"
+                ? "أعلى 10 أدوية حسب الحالات المُبلَّغ عنها (مُصنَّفة حسب الأولوية)"
+                : "Top 10 Médicaments par Cas Rapportés (par priorité)"}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -144,13 +147,19 @@ export function OverviewTab() {
               <Skeleton className="w-full h-[280px]" />
             ) : (
               <ResponsiveContainer width="100%" height={280} debounce={0}>
-                <BarChart data={topDrugsData} layout="vertical" margin={{ left: 20, right: 10 }}>
+                <BarChart data={topDrugsData} layout="vertical" margin={{ left: 20, right: 10, top: 5, bottom: 20 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke={gridColor} horizontal={false} vertical={true} />
                   <XAxis
                     type="number"
                     tick={{ fontSize: 11, fill: tickColor }}
                     stroke={tickColor}
                     allowDecimals={false}
+                    label={{
+                      value: language === "ar" ? "عدد الحالات المُبلَّغ عنها" : "Nombre de cas rapportés",
+                      position: "insideBottom",
+                      offset: -8,
+                      style: { fill: tickColor, fontSize: 11 },
+                    }}
                   />
                   <YAxis
                     type="category"
@@ -160,10 +169,30 @@ export function OverviewTab() {
                     width={90}
                   />
                   <Tooltip content={<CustomTooltip />} isAnimationActive={false} cursor={false} />
+                  <Legend content={<CustomLegend />} />
                   <Bar
-                    dataKey="count"
-                    name={language === "ar" ? "الإشارات" : "Signaux"}
-                    fill={CHART_COLORS.purple}
+                    dataKey="high"
+                    stackId="priority"
+                    name={language === "ar" ? "أولوية عالية" : "Priorité haute"}
+                    fill={CHART_COLORS.red}
+                    fillOpacity={0.85}
+                    activeBar={{ fillOpacity: 1 }}
+                    isAnimationActive={false}
+                  />
+                  <Bar
+                    dataKey="medium"
+                    stackId="priority"
+                    name={language === "ar" ? "أولوية متوسطة" : "Priorité moyenne"}
+                    fill={CHART_COLORS.orange}
+                    fillOpacity={0.85}
+                    activeBar={{ fillOpacity: 1 }}
+                    isAnimationActive={false}
+                  />
+                  <Bar
+                    dataKey="low"
+                    stackId="priority"
+                    name={language === "ar" ? "أولوية منخفضة" : "Priorité faible"}
+                    fill={CHART_COLORS.green}
                     fillOpacity={0.85}
                     activeBar={{ fillOpacity: 1 }}
                     isAnimationActive={false}
