@@ -44,20 +44,27 @@ export function SignalDetectionTab() {
   const volcanoLoading = isVolcanoLoading || isVolcanoFetching;
 
   const volcanoPoints = volcano || [];
-  
-  const volcanoTrace = {
-    x: volcanoPoints.map(p => p.logRor),
-    y: volcanoPoints.map(p => p.negLogP),
-    text: volcanoPoints.map(p => `Drug: ${p.drug}<br>ADR: ${p.adr}<br>ROR: ${p.ror.toFixed(2)}<br>p-val: ${p.pValue.toExponential(2)}<br>Cases: ${p.nCases}`),
-    mode: 'markers',
-    type: 'scatter',
-    hoverinfo: 'text',
-    marker: {
-      size: 8,
-      color: volcanoPoints.map(p => p.priority === 'high' ? CHART_COLORS.orange : p.significant ? CHART_COLORS.red : CHART_COLORS.blue),
-      opacity: 0.7
-    }
-  };
+
+  const highPriority = volcanoPoints.filter(p => p.priority === 'high');
+  const significant  = volcanoPoints.filter(p => p.priority !== 'high' && p.significant);
+  const nonSignif    = volcanoPoints.filter(p => p.priority !== 'high' && !p.significant);
+
+  const makeTrace = (points: typeof volcanoPoints, name: string, color: string) => ({
+    x: points.map(p => p.logRor),
+    y: points.map(p => p.negLogP),
+    text: points.map(p => `<b>${p.drug} → ${p.adr}</b><br>ROR: ${p.ror.toFixed(2)}<br>p-value: ${p.pValue.toExponential(2)}<br>Cases: ${p.nCases}<br>Priority: ${p.priority}`),
+    name,
+    mode: 'markers' as const,
+    type: 'scatter' as const,
+    hoverinfo: 'text' as const,
+    marker: { size: 9, color, opacity: 0.75, line: { width: 0.5, color: isDark ? '#222' : '#fff' } },
+  });
+
+  const volcanoTraces = [
+    makeTrace(nonSignif,    language === 'ar' ? 'غير مُعتَدّ به'    : 'Non significatif',    CHART_COLORS.blue),
+    makeTrace(significant,  language === 'ar' ? 'مُعتَدّ به إحصائياً' : 'Significatif (p<0.05)', CHART_COLORS.red),
+    makeTrace(highPriority, language === 'ar' ? 'أولوية عالية'      : 'Priorité haute',       CHART_COLORS.orange),
+  ];
 
   const gridColor = isDark ? "rgba(255,255,255,0.08)" : "#e5e5e5";
   const tickColor = isDark ? "#98999C" : "#71717a";
@@ -108,33 +115,86 @@ export function SignalDetectionTab() {
   return (
     <div className="space-y-4">
       <Card>
-        <CardHeader className="flex-row items-center justify-between">
-          <CardTitle className="text-base">Volcano Plot</CardTitle>
+        <CardHeader className="flex-row items-start justify-between gap-4">
+          <div className="space-y-1">
+            <CardTitle className="text-base">
+              {language === 'ar' ? 'مخطط البركان — كشف إشارات الأدوية والآثار الجانبية' : 'Volcano Plot — Détection de signaux médicament–effet indésirable'}
+            </CardTitle>
+            <p className="text-xs text-muted-foreground max-w-2xl leading-relaxed">
+              {language === 'ar'
+                ? 'كل نقطة تمثل زوج دواء–أثر جانبي. النقاط في الأعلى يميناً (أعلى ROR وأكثر دلالة إحصائية) تشير إلى إشارات أمان محتملة. الخطوط المتقطعة تمثل عتبات الدلالة: ROR > 2 (محور X) و p < 0.05 (محور Y).'
+                : 'Chaque point = un couple médicament–effet indésirable. Les points en haut à droite (ROR élevé + forte significativité) sont des signaux d\'alerte potentiels. Les lignes en pointillés marquent les seuils : ROR > 2 (axe X) et p < 0.05 (axe Y).'}
+            </p>
+          </div>
           {!volcanoLoading && volcanoPoints.length > 0 && (
-            <CSVLink data={volcanoPoints} filename="volcano-plot.csv" className="print:hidden flex items-center justify-center w-[26px] h-[26px] rounded-[6px] transition-colors hover:opacity-80" style={{ backgroundColor: isDark ? "rgba(255,255,255,0.1)" : "#F0F1F2", color: isDark ? "#c8c9cc" : "#4b5563" }} aria-label="Export chart data as CSV">
+            <CSVLink data={volcanoPoints} filename="volcano-plot.csv" className="print:hidden flex items-center justify-center w-[26px] h-[26px] rounded-[6px] transition-colors hover:opacity-80 shrink-0" style={{ backgroundColor: isDark ? "rgba(255,255,255,0.1)" : "#F0F1F2", color: isDark ? "#c8c9cc" : "#4b5563" }} aria-label="Export chart data as CSV">
               <Download className="w-3.5 h-3.5" />
             </CSVLink>
           )}
         </CardHeader>
         <CardContent>
           {volcanoLoading ? (
-            <Skeleton className="w-full h-[400px]" />
+            <Skeleton className="w-full h-[460px]" />
           ) : (
             <Plot
-              data={[volcanoTrace] as any}
+              data={volcanoTraces as any}
               layout={{
                 autosize: true,
-                height: 400,
-                margin: { t: 20, r: 20, b: 40, l: 40 },
+                height: 460,
+                margin: { t: 30, r: 30, b: 70, l: 80 },
                 paper_bgcolor: 'transparent',
                 plot_bgcolor: 'transparent',
-                xaxis: { title: 'log2(ROR)', gridcolor: gridColor, tickfont: { color: tickColor }, titlefont: { color: tickColor } },
-                yaxis: { title: '-log10(p-value)', gridcolor: gridColor, tickfont: { color: tickColor }, titlefont: { color: tickColor } },
+                hovermode: 'closest',
+                xaxis: {
+                  title: {
+                    text: language === 'ar'
+                      ? '<b>log₂(ROR)</b> — قوة واتجاه الارتباط<br><sub>قيم موجبة = الدواء مرتبط أكثر بالأثر الجانبي</sub>'
+                      : '<b>log₂(ROR)</b> — Force & direction de l\'association<br><sub>Valeurs positives = médicament plus associé à l\'effet indésirable</sub>',
+                    font: { color: tickColor, size: 12 },
+                    standoff: 12,
+                  },
+                  gridcolor: gridColor,
+                  zerolinecolor: gridColor,
+                  tickfont: { color: tickColor },
+                },
+                yaxis: {
+                  title: {
+                    text: language === 'ar'
+                      ? '<b>−log₁₀(قيمة p)</b> — الدلالة الإحصائية<br><sub>قيم أعلى = ثقة أكبر بأن الارتباط ليس صدفة</sub>'
+                      : '<b>−log₁₀(p-value)</b> — Significativité statistique<br><sub>Plus haut = plus de confiance que l\'association n\'est pas due au hasard</sub>',
+                    font: { color: tickColor, size: 12 },
+                    standoff: 12,
+                  },
+                  gridcolor: gridColor,
+                  zerolinecolor: gridColor,
+                  tickfont: { color: tickColor },
+                },
                 shapes: [
                   { type: 'line', x0: 0.693, x1: 0.693, y0: 0, y1: 10, line: { color: tickColor, width: 1, dash: 'dash' } },
-                  { type: 'line', x0: -5, x1: 5, y0: 1.301, y1: 1.301, line: { color: tickColor, width: 1, dash: 'dash' } }
+                  { type: 'line', x0: -5, x1: 5, y0: 1.301, y1: 1.301, line: { color: tickColor, width: 1, dash: 'dash' } },
                 ],
-                showlegend: false
+                annotations: [
+                  {
+                    x: 0.693, y: 10, xref: 'x', yref: 'y',
+                    text: language === 'ar' ? 'ROR = 2' : 'ROR = 2',
+                    showarrow: false, font: { size: 10, color: tickColor },
+                    xanchor: 'left', yanchor: 'top', xshift: 4,
+                  },
+                  {
+                    x: -5, y: 1.301, xref: 'x', yref: 'y',
+                    text: 'p = 0.05',
+                    showarrow: false, font: { size: 10, color: tickColor },
+                    xanchor: 'left', yanchor: 'bottom', xshift: 4, yshift: 2,
+                  },
+                ],
+                legend: {
+                  orientation: 'h',
+                  yanchor: 'bottom', y: 1.02,
+                  xanchor: 'right', x: 1,
+                  font: { color: tickColor, size: 11 },
+                  bgcolor: 'transparent',
+                },
+                showlegend: true,
               }}
               style={{ width: '100%', height: '100%' }}
               config={{ responsive: true, displayModeBar: false }}
